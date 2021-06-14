@@ -1,0 +1,210 @@
+/* Instructions */
+/* When clicked, the selected card should enlarge (up to you how much) and the price should have a color of #ffd60a*/
+/* The non-selected cards should reduce in opacity */
+/* Stretch goal: add a toggle to display monthly and annual prices */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --clr-white: #ffffff;
+  --clr-accent-color: #ffd60a;
+  --clr-main-content:  #003566;
+  --clr-background: #48c9b0;
+  --clr-black: #000;
+}
+
+body {
+  font-family: "Asap", sans-serif;
+  background: var(--clr-background);
+}
+.wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: grid;
+  place-content: center;
+}
+
+h1 {
+  text-transform: capitalize;
+  text-align: center;
+  color: var(--clr-main-content);
+  font-weight: bold;
+  margin-top: 0.2em;
+}
+marquee {
+  text-transform: capitalize;
+  text-align: center;
+  color: var(--clr-main-content);
+  font-weight: bold;
+  margin-top: 0.2em;
+  padding-bottom: 2em;
+}
+h2 {
+  text-transform: capitalize;
+}
+
+.container {
+  display: grid;
+  place-content: center;
+  gap: 1em;
+  max-width: max-content;
+  border-radius: 1em;
+  margin-top: 50px;
+}
+
+/* card */
+
+.card {
+  color: var(--clr-white);
+  width: 18em;
+  text-align: center;
+  padding: 2em 1em;
+  border-radius: 0.5em;
+  border: 1px solid var(--clr-accent-color);
+  transition: all 0.5s ease-in-out;
+}
+
+.card h2 {
+  margin: 0;
+}
+
+.card p {
+  font-size: 2rem;
+}
+
+.card ul li {
+  text-align: left;
+  padding: 0.5em 0 1em 0.5em;
+}
+
+.card ul {
+  padding-bottom: 4em;
+}
+.card-rabbit ul {
+  padding-bottom: 1em;
+}
+
+.card-cat ul li::marker {
+  content: "🐱";
+}
+
+.card-rabbit ul li::marker {
+  content: "🐇";
+}
+.card-rabbit {
+  z-index: 10;
+  color: var(--clr-white);
+  border: 1px solid var(--clr-accent-color);
+  font-weight: bold;
+  background: rgb(131,58,180);
+  background: linear-gradient(90deg, rgb(131, 58, 180) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%); 
+}
+.card-dog ul li::marker {
+  content: "🐶";
+}
+
+.card-cat {
+  font-weight: bold;
+  background: rgb(22,19,73);
+  background: linear-gradient(90deg, rgba(22,19,73,1) 0%, rgba(9,121,27,1) 50%, rgba(0,212,255,1) 100%); 
+}
+
+.card-dog {
+  font-weight: bold;
+  background: rgb(22,19,73);
+  background: linear-gradient(90deg, rgba(22,19,73,1) 0%, rgba(118,9,121,1) 70%, rgb(26, 33, 34) 100%); 
+}
+
+.card-cat:hover {
+  background: url(img/cat.jpg);
+  background-size: cover;
+  height: 450px;
+  width: 400px;
+  cursor: url(cursors/cat.png), default;
+}
+
+.card-dog:hover {
+  background: url(img/dog.jpg);
+  background-size: cover;
+  height: 450px;
+  width: 400px;
+  cursor: url(cursors/dog.png), default;
+  color: var(--clr-white);
+}
+
+.card-rabbit:hover {
+  background: url(img/rabbit.jpg);
+  background-size: cover;
+  height: 450px;
+  width: 400px;
+  cursor: url(cursors/rabbit.png), default;
+  color: var(--clr-black);
+}
+
+ .container:hover > * {
+  opacity: 0.2;
+  transform: scale(1);
+}
+
+.container:hover > .card:hover,
+.container:focus-within > .card:focus {
+  transform: scale(1.15);
+  border-radius: 1em;
+  z-index: 20;
+  opacity: 1;
+}
+/* card */
+
+button {
+  font-family: inherit;
+  padding: 0.5em 2em;
+  border: none;
+  border-radius: 2em;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+  background-color: var(--clr-accent-color);
+}
+
+button:hover,
+button:focus {
+  cursor: pointer;
+  background-color: var(--clr-white);
+}
+.card:nth-child(2) button:hover,
+.card:nth-child(2) button:focus {
+  background-color: var(--clr-white);
+  color: var(--clr-main-content);
+}
+
+/* Responsivity*/
+
+@media (min-width: 50em) {
+  .container {
+    grid-column: auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+
+  .card:nth-child(1) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .card:nth-child(3) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .headline {
+    padding-bottom: 3em;
+  }
+}
+
+@media (min-width: 50em) {
+  .card-rabbit {
+    padding-bottom: 3.5rem;
+  }
+}
